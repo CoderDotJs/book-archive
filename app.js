@@ -56,7 +56,7 @@ const displayData = (data) => {
               <h5 class="card-title">
               <span class="fw-bold">Title: </span> ${book.title ? book.title : '<i>No Title Found</i>'}</h5>
               <p class="card-text">
-              <span class="fw-bold">Auther: </span> ${book.author_name ? book.author_name : '<i>No Auther Found</i>'}</p>
+              <span class="fw-bold">Author: </span> ${book.author_name ? book.author_name : '<i>No Author Found</i>'}</p>
               <p class="card-text">
               <span class="fw-bold">Publisher: </span> ${book.publisher ? book.publisher : '<i>No Publisher Found</i>'}</p>
               <p class="card-text">
