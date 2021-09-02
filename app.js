@@ -32,38 +32,43 @@ const displayData = (data) => {
     //append all the books data to this 
 
     const newBook = document.createElement('div');
-        newBook.classList.add('row', 'container', 'mx-auto', 'row-cols-1' ,'row-cols-md-3', 'g-4');
+        newBook.classList.add('row', 'container', 'mx-auto', 'row-cols-1' ,'row-cols-md-3', 'g-4','my-4');
 
-          //display every books search to the dom
+          //display every books search to the dom only 29 will be shown no matter how much serches are found
 
       data.docs.slice(0,30).forEach( (book) => {
         let img = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
+
+        //check if the book image is available or not
+
         if(!book.cover_i){
           img = `https://cdn.bookauthority.org/dist/images/book-cover-not-available.6b5a104fa66be4eec4fd16aebd34fe04.png`
         }
+
+          //add the books to the dom
+
         const books = document.createElement('div');
         books.classList.add('col')
         books.innerHTML = `
         <div class="card h-100 shadow-lg">
-        <img src="${img}" class="card-img-top d-block mx-auto" alt="${book.conver_i ? book.title : 'No image found'}">
-        <div class="card-body">
-          <h5 class="card-title">
-          <span class="fw-bold">Title: </span> ${book.title ? book.title : 'No Title Found'}</h5>
-          <p class="card-text">
-          <span class="fw-bold">Auther: </span> ${book.author_name ? book.author_name : 'No Auther Found'}</p>
-          <p class="card-text">
-          <span class="fw-bold">Publisher: </span> ${book.publisher ? book.publisher : 'No Publisher Found'}</p>
-          <p class="card-text">
-          <span class="fw-bold">First Published: </span> ${book.first_publish_year ? book.first_publish_year : 'No First Published Year Found'}</p>
-        </div>
-      </div>`;
-      newBook.appendChild(books);
-      display.appendChild(newBook);
-      
-      input.value = ''
-        console.log(data,book)
+          <img src="${img}" class="card-img-top d-block mx-auto" alt="${book.conver_i ? book.title : 'No image found'}">
+            <div class="card-body">
+              <h5 class="card-title">
+              <span class="fw-bold">Title: </span> ${book.title ? book.title : '<i>No Title Found</i>'}</h5>
+              <p class="card-text">
+              <span class="fw-bold">Auther: </span> ${book.author_name ? book.author_name : '<i>No Auther Found</i>'}</p>
+              <p class="card-text">
+              <span class="fw-bold">Publisher: </span> ${book.publisher ? book.publisher : '<i>No Publisher Found</i>'}</p>
+              <p class="card-text">
+              <span class="fw-bold">First Published: </span> ${book.first_publish_year ? book.first_publish_year : '<i>No First Published Year Found</i>'}</p>
+            </div>
+        </div>`;
+          newBook.appendChild(books);
+          display.appendChild(newBook);
+          input.value = ''
+          console.log(data,book)
     });
-}
+};
 
 
 //add event listener to the search button
