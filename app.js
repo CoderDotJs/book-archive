@@ -66,7 +66,7 @@ const displayData = (data) => {
           newBook.appendChild(books);
           display.appendChild(newBook);
           input.value = ''
-          console.log(data,book)
+          console.log(book)
     });
 };
 
