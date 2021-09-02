@@ -14,6 +14,7 @@ const displayData = (data) => {
     const booksDisplay= document.getElementById('books-display');
     const display = document.getElementById('display')
     const searchFound = document.getElementById('search-found');
+
       //error handalling
 
     if(data === null || data === undefined || data.numFound === 0){
@@ -23,18 +24,28 @@ const displayData = (data) => {
     }else{
       display.innerHTML = ''
     }
+
+    //display total search found
+
     searchFound.innerHTML = `Total searches found: ${data.numFound}`;
+
+    //append all the books data to this 
+
     const newBook = document.createElement('div');
         newBook.classList.add('row', 'container', 'mx-auto', 'row-cols-1' ,'row-cols-md-3', 'g-4');
 
           //display every books search to the dom
 
       data.docs.slice(0,30).forEach( (book) => {
+        let img = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
+        if(!book.cover_i){
+          img = `https://cdn.bookauthority.org/dist/images/book-cover-not-available.6b5a104fa66be4eec4fd16aebd34fe04.png`
+        }
         const books = document.createElement('div');
         books.classList.add('col')
         books.innerHTML = `
-        <div class="card shadow-lg">
-        <img src="https://covers.openlibrary.org/b/oclc/${book?.oclc}-M.jpg" class="card-img-top d-block mx-auto" alt="${book.conver_i ? book.title : 'No image found'}">
+        <div class="card h-100 shadow-lg">
+        <img src="${img}" class="card-img-top d-block mx-auto" alt="${book.conver_i ? book.title : 'No image found'}">
         <div class="card-body">
           <h5 class="card-title">
           <span class="fw-bold">Title: </span> ${book.title ? book.title : 'No Title Found'}</h5>
@@ -50,7 +61,7 @@ const displayData = (data) => {
       display.appendChild(newBook);
       
       input.value = ''
-        console.log(book)
+        console.log(data,book)
     });
 }
 
